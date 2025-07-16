@@ -1,0 +1,32 @@
+.parent {
+    background-color: rgb(255, 0, 0);
+    width: 30rem;
+    height: 20rem;
+    position: relative;
+    
+    > h2 {
+        color: blue;
+    }
+}
+
+.child {
+    background-color: rgb(87, 241, 32);
+    width: 500px;
+    height: 30px;
+    position: relative;
+
+    > h3 {
+        color: rgb(26, 23, 23);
+    }
+}
+
+.child2 {
+    background-color: rgb(201, 105, 60);
+    width: 20%;
+    height: 30%;
+    position: absolute;
+}
+
+.child2 _hover {
+    background-color: rgb(203, 121, 14);
+}

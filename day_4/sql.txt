@@ -1,0 +1,124 @@
+-- CREATE DATABASE blog_app;
+-- USE blog_app;
+CREATE TABLE users (
+id INT,
+username VARCHAR(50),
+email VARCHAR(100)
+);
+CREATE TABLE blogs (
+id INT,
+user_id INT,
+title VARCHAR(100),
+content TEXT,
+created_at DATE
+);
+CREATE TABLE comments (
+id INT,
+blog_id INT,
+user_id INT,
+comment TEXT,
+created_at DATE
+);
+
+
+
+INSERT INTO users VALUES (1, 'alice', 'alice@example.com');
+INSERT INTO users VALUES (2, 'bob', 'bob@example.com');
+INSERT INTO users VALUES (1, 'bob', 'alice@example.com');
+
+INSERT INTO blogs VALUES (1, 1, 'First Blog', 'This is my first blog post.',
+'2025-07-01');
+INSERT INTO blogs VALUES (2, 2, 'Bob\'s Post', 'Hello world from Bob.',
+'2025-07-02');
+INSERT INTO comments VALUES (1, 1, 2, 'Great post, Alice!', '2025-07-03');
+INSERT INTO comments VALUES (2, 2, 1, 'Thanks Bob!', '2025-07-04');
+INSERT INTO comments VALUES (2, 2, 1, 'Thanks Bob! Nice Work', '2025-08-04');
+
+-- example
+-- select * from comments where created_at between '2025-07-01' and '2025-07-03';
+
+-- comments with ! at the end
+-- select comment from comments where comment like "%!";
+-- select comment from comments where comment like "_!";
+
+-- 2nd record from users
+-- select * from users limit 1 offset 1;
+
+-- 2nd last from users
+-- select * from users limit 2 offset 1;
+
+-- sort acc to id in asc
+-- select * from users order by id asc;
+
+-- sort acc to id in desc
+-- select * from users order by id desc;
+
+-- ========================================================
+-- group and having
+
+-- group comments by blogs
+-- select blog_id, count(*) as total_comments
+-- from comments
+-- group by blog_id;
+
+-- blog table - ek user - kitne blogs?
+-- select user_id, count(*) as total_comments
+-- from comments
+-- group by user_id;
+
+-- ==================================================
+
+-- 2nd blog ke liye ek aur data add karna hai comments table mein
+-- select user_id, count(*) as total_comments
+-- from comments
+-- group by user_id
+-- having count(*)>1;
+
+-- ==================================================
+
+-- JOINS
+
+-- jis jis user ne blog banaya hai uska naam
+-- select users.username
+-- from blogs
+-- join users on blogs.user_id = users.id;
+
+-- blog titles along with usernames of authors
+-- select blogs.title, users.username
+-- from blogs
+-- join users on blogs.user_id = users.id;
+
+-- ==================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

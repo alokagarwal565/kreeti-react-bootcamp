@@ -1,0 +1,27 @@
+loading
+isLoading
+set is loading false
+api call finish
+by deafault false
+conditional rendering
+
+{isActive && {
+
+
+===========================
+react router
+
+in mainjsx
+
+outlet
+jaha laga denge us position mein children jake beth jayega
+under he render ho ga
+parent ke upar children ko run karwane ka kaam karta hai outlet
+
+===========================
+Hw project clone
+analyze
+see flow
+code
+etc
+

@@ -1,0 +1,139 @@
+-- SQL Query Assignment: ToDo App 
+-- Schema Design 
+CREATE TABLE users ( 
+id INT, 
+name VARCHAR(100), 
+email VARCHAR(100) 
+); 
+CREATE TABLE categories ( 
+id INT, 
+name VARCHAR(50) 
+); 
+CREATE TABLE todos ( 
+id INT, 
+user_id INT, 
+category_id INT, 
+title VARCHAR(255), 
+description TEXT, 
+status VARCHAR(20), -- e.g., 'pending', 'completed' 
+due_date DATE 
+); 
+
+-- Sample Data -- Users 
+INSERT INTO users VALUES (1, 'Alice Johnson', 'alice@example.com'); 
+INSERT INTO users VALUES (2, 'Bob Smith', 'bob@example.com'); 
+INSERT INTO users VALUES (3, 'Charlie John', 'charlie@example.com'); -- Categories 
+INSERT INTO categories VALUES (1, 'Work'); 
+INSERT INTO categories VALUES (2, 'Personal'); 
+INSERT INTO categories VALUES (3, 'Health'); -- Todos 
+INSERT INTO todos VALUES (1, 1, 1, 'Submit Report', 'Submit by Friday', 'pending', 
+'2025-07-12'); 
+INSERT INTO todos VALUES (2, 1, 2, 'Buy Groceries', 'Milk, Eggs, Bread', 'completed', 
+'2025-07-05'); 
+INSERT INTO todos VALUES (3, 2, 1, 'Team Meeting', 'Project sync up', 'pending', 
+'2025-07-10'); 
+INSERT INTO todos VALUES (4, 2, 3, 'Morning Jog', 'Run 5km', 'completed', 
+'2025-07-09'); 
+INSERT INTO todos VALUES (5, 2, 2, 'Plan Vacation', 'Choose destination', 'completed', 
+'2025-07-14'); 
+INSERT INTO todos VALUES (6, 3, 1, 'Fix Bug', 'Resolve login error', 'pending', 
+'2025-07-11'); 
+INSERT INTO todos VALUES (7, 3, 2, 'Read Book', 'Finish 3 chapters', 'completed', 
+'2025-07-08'); 
+
+
+-- Questions 
+-- 1. List all todos that are due after today and are still pending. 
+-- select * from todos
+-- where status = "pending"
+-- and due_date > '2025-07-11';
+
+-- 2. Find users who have the word “john” anywhere in their name (case insensitive). 
+-- select * from users
+-- where name like "%john%";
+
+-- 3. Show how many todos each user has.
+-- select user_id, count(*) as Todos_Count from todos
+-- group by user_id;
+
+-- 4. Find users who have created more than 2 todos. 
+-- select user_id from todos
+-- group by user_id
+-- having count(*) > 2;
+
+-- 5. Get the earliest and latest due date for each user. 
+-- select user_id, max(due_date) as earliest, min(due_date) as latest
+-- from todos
+-- group by user_id;
+
+-- 6. List each todo along with the user’s name. 
+-- select u.name, t.title, t.description from todos t
+-- join users u on t.user_id = u.id;
+
+-- 7. List each todo with its category name and user name. 
+-- select t.title, t.description, c.name as category_name, u.name as user_name
+-- from todos t
+-- join categories c on t.category_id = c.id
+-- join users u on t.user_id = u.id;
+
+-- 8. Find users who have at least one todo in the 'Personal' category. 
+-- select t.title, t.description, u.name as user_name
+-- from todos t
+-- join categories c on t.category_id = c.id
+-- join users u on t.user_id = u.id
+-- where c.name = 'Personal';
+
+-- 9. Find categories that have more than 2 todos. 
+-- SELECT c.id, c.name AS category_name
+-- FROM categories c
+-- JOIN todos t ON t.category_id = c.id
+-- GROUP BY c.id, c.name
+-- HAVING COUNT(*) > 2;
+
+-- 10. List users who have only completed todos (no pending tasks).
+-- SELECT u.id, u.name AS user_name
+-- FROM users u
+-- JOIN todos t ON u.id = t.user_id
+-- GROUP BY u.id, u.name
+-- HAVING SUM(
+-- CASE WHEN t.status = 'pending' THEN 1 
+-- ELSE 0 
+-- END
+-- ) = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
